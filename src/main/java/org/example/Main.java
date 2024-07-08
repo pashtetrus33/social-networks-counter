@@ -25,6 +25,11 @@ public class Main {
         String instPassword = props.getProperty("inst.password");
         String instTargetUser = props.getProperty("inst.targetUser");
 
+        String xUsername = props.getProperty("x.username");
+        String xPassword = props.getProperty("x.password");
+        String xTargetUser = props.getProperty("x.targetUser");
+        String xPhone = props.getProperty("x.phone");
+
         LocalDate startDate;
         LocalDate endDate;
         try {
@@ -44,8 +49,12 @@ public class Main {
             case "instagram":
                 InstagramPostCounter.parse(instUsername, instPassword, instTargetUser, startDate, endDate);
                 break;
-            case "both":
+            case "x":
+                XPostCounter.parse(xPhone, xUsername, xPassword, xTargetUser, startDate, endDate);
+                break;
+            case "all":
                 VKPostCounter.parse(vkUsername, vkPassword, vkTargetUser, startDate, endDate);
+                XPostCounter.parse(xPhone, xUsername, xPassword, xTargetUser, startDate, endDate);
                 InstagramPostCounter.parse(instUsername, instPassword, instTargetUser, startDate, endDate);
                 break;
             default:
